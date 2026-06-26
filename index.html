@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prototipo navegable de ParaWays Mission Control para Rick y Paolo."
+    />
+    <title>ParaWays Mission Control</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegación principal">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div>
+            <strong>ParaWays</strong>
+            <small>Mission Control</small>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button class="nav-item is-active" data-view="command" type="button">
+            <span class="nav-icon">⌂</span>
+            Centro de mando
+          </button>
+          <button class="nav-item" data-view="missions" type="button">
+            <span class="nav-icon">✓</span>
+            Misiones
+            <span class="nav-count" id="navMissionCount">0</span>
+          </button>
+          <button class="nav-item" data-view="cases" type="button">
+            <span class="nav-icon">◇</span>
+            Casos
+          </button>
+          <button class="nav-item" data-view="intelligence" type="button">
+            <span class="nav-icon">✦</span>
+            Inteligencia
+          </button>
+          <button class="nav-item" data-view="systems" type="button">
+            <span class="nav-icon">⌘</span>
+            Sistemas
+          </button>
+        </nav>
+
+        <div class="sidebar-spacer"></div>
+
+        <div class="system-pulse">
+          <div class="pulse-heading">
+            <span class="status-dot"></span>
+            <span>Sistema estable</span>
+          </div>
+          <p>Todos los datos de esta demo son ficticios.</p>
+          <div class="pulse-row">
+            <span>Automatizaciones</span>
+            <strong>7/7</strong>
+          </div>
+          <div class="pulse-row">
+            <span>Agentes</span>
+            <strong>4 activos</strong>
+          </div>
+        </div>
+
+        <button class="profile-chip" id="roleToggle" type="button" aria-label="Cambiar vista de usuario">
+          <span class="avatar" id="avatarInitials">RP</span>
+          <span>
+            <strong id="profileName">Rick</strong>
+            <small id="profileRole">Dirección estratégica</small>
+          </span>
+          <span class="profile-chevron">↕</span>
+        </button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="todayLabel">OPERACIÓN · HOY</p>
+            <h1 id="pageTitle">Centro de mando</h1>
+          </div>
+          <div class="topbar-actions">
+            <label class="search-box" aria-label="Buscar">
+              <span>⌕</span>
+              <input id="globalSearch" type="search" placeholder="Buscar misión, cliente o caso" />
+            </label>
+            <button class="icon-button" id="resetDemo" type="button" title="Restablecer datos demo">↻</button>
+            <button class="primary-button" id="openInstruction" type="button">
+              <span>＋</span>
+              Nueva instrucción
+            </button>
+          </div>
+        </header>
+
+        <section class="hero-panel" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <span class="hero-kicker">TU EMPRESA, EN UNA SOLA LECTURA</span>
+            <h2 id="heroTitle">Buenos días, Rick.</h2>
+            <p id="heroSummary">
+              Hay <strong>3 decisiones</strong> que requieren tu criterio. Paolo tiene <strong>5 misiones listas</strong> y ningún cliente quedó sin próxima acción.
+            </p>
+            <div class="hero-actions">
+              <button class="secondary-button" id="focusDecision" type="button">Ver decisiones de Rick</button>
+              <button class="text-button" id="focusPaolo" type="button">Abrir cola de Paolo →</button>
+            </div>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <div class="orbit-ring orbit-one"></div>
+            <div class="orbit-ring orbit-two"></div>
+            <div class="orbit-core">PW</div>
+            <span class="orbit-node node-one">IA</span>
+            <span class="orbit-node node-two">CRM</span>
+            <span class="orbit-node node-three">OPS</span>
+          </div>
+        </section>
+
+        <section class="metric-grid" aria-label="Indicadores operativos">
+          <article class="metric-card">
+            <div class="metric-topline">
+              <span class="metric-icon warm">↗</span>
+              <span class="metric-delta positive">+18%</span>
+            </div>
+            <strong id="metricActiveCases">12</strong>
+            <span>Casos activos</span>
+            <small>8 avanzan sin intervención de Rick</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-topline">
+              <span class="metric-icon blue">✓</span>
+              <span class="metric-delta">Hoy</span>
+            </div>
+            <strong id="metricReadyMissions">5</strong>
+            <span>Misiones listas para Paolo</span>
+            <small>Con SOP y definición de terminado</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-topline">
+              <span class="metric-icon green">◎</span>
+              <span class="metric-delta positive">100%</span>
+            </div>
+            <strong id="metricCoverage">0</strong>
+            <span>Clientes sin próxima acción</span>
+            <small>Objetivo operativo: siempre cero</small>
+          </article>
+          <article class="metric-card">
+            <div class="metric-topline">
+              <span class="metric-icon violet">$</span>
+              <span class="metric-delta positive">+24%</span>
+            </div>
+            <strong>USD 7.840</strong>
+            <span>Pipeline ponderado</span>
+            <small>Estimación demo, no contabilidad real</small>
+          </article>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="panel board-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">EJECUCIÓN</p>
+                <h3>Misiones prioritarias</h3>
+              </div>
+              <div class="filter-group" role="group" aria-label="Filtros de responsable">
+                <button class="filter-chip is-active" data-owner="all" type="button">Todas</button>
+                <button class="filter-chip" data-owner="Paolo" type="button">Paolo</button>
+                <button class="filter-chip" data-owner="Rick" type="button">Rick</button>
+                <button class="filter-chip" data-owner="IA" type="button">IA</button>
+              </div>
+            </div>
+
+            <div class="kanban" id="kanbanBoard" aria-live="polite">
+              <section class="kanban-column" data-status="ready">
+                <div class="column-heading">
+                  <span><i class="column-dot ready"></i> Lista para ejecutar</span>
+                  <strong class="column-count" data-count="ready">0</strong>
+                </div>
+                <div class="mission-list" data-list="ready"></div>
+              </section>
+              <section class="kanban-column" data-status="progress">
+                <div class="column-heading">
+                  <span><i class="column-dot progress"></i> En ejecución</span>
+                  <strong class="column-count" data-count="progress">0</strong>
+                </div>
+                <div class="mission-list" data-list="progress"></div>
+              </section>
+              <section class="kanban-column" data-status="waiting">
+                <div class="column-heading">
+                  <span><i class="column-dot waiting"></i> Esperando tercero</span>
+                  <strong class="column-count" data-count="waiting">0</strong>
+                </div>
+                <div class="mission-list" data-list="waiting"></div>
+              </section>
+              <section class="kanban-column" data-status="review">
+                <div class="column-heading">
+                  <span><i class="column-dot review"></i> Revisión de Rick</span>
+                  <strong class="column-count" data-count="review">0</strong>
+                </div>
+                <div class="mission-list" data-list="review"></div>
+              </section>
+            </div>
+          </div>
+
+          <aside class="panel decision-panel">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">CRITERIO HUMANO</p>
+                <h3>Decisiones de Rick</h3>
+              </div>
+              <span class="priority-badge">3</span>
+            </div>
+            <div class="decision-stack" id="decisionStack"></div>
+            <button class="full-width-button" id="openAllDecisions" type="button">Abrir tablero de excepciones</button>
+          </aside>
+        </section>
+
+        <section class="panel cases-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">CLIENTES</p>
+              <h3>Casos en movimiento</h3>
+            </div>
+            <div class="legend">
+              <span><i class="legend-dot ontrack"></i> En curso</span>
+              <span><i class="legend-dot attention"></i> Atención</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Caso</th>
+                  <th>Servicio</th>
+                  <th>Etapa</th>
+                  <th>Responsable</th>
+                  <th>Próxima acción</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="casesTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="app-footer">
+          <span>ParaWays Mission Control · Prototipo v0.1</span>
+          <span>Sin conexiones reales · Sin datos personales</span>
+        </footer>
+      </main>
+    </div>
+
+    <dialog class="instruction-dialog" id="instructionDialog">
+      <form method="dialog" id="instructionForm">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">MISSION DISPATCHER · DEMO</p>
+            <h2>Convierte una idea en misión</h2>
+          </div>
+          <button class="dialog-close" value="cancel" aria-label="Cerrar" type="submit">×</button>
+        </div>
+        <p class="dialog-intro">
+          Escribe como normalmente le hablarías a Paolo. La demo detectará responsable, idioma, urgencia, aprobación y checklist sugerido.
+        </p>
+        <label class="field-label" for="instructionText">Tu instrucción</label>
+        <textarea
+          id="instructionText"
+          rows="6"
+          required
+          placeholder="Ejemplo: Paolo, preparar en portugués el lanzamiento de la Auditoría de Solvencia. Crear landing, checklist y tres piezas. No publicar sin mi revisión. Prioridad alta para el viernes."
+        ></textarea>
+        <div class="example-prompts">
+          <button class="example-chip" type="button" data-example="Paolo, preparar en portugués el lanzamiento de la Auditoría de Solvencia. Crear landing, checklist y tres piezas. No publicar sin mi revisión. Prioridad alta para el viernes.">Lanzamiento PT-BR</button>
+          <button class="example-chip" type="button" data-example="Revisar los documentos del caso PY-2026-0041 y preparar una lista de faltantes. Escalar cualquier diferencia de identidad a Rick.">Control documental</button>
+          <button class="example-chip" type="button" data-example="Investigar una oferta de Compliance Care para clientes corporativos y preparar una propuesta de precio. No contactar a clientes todavía.">Nuevo producto</button>
+        </div>
+        <div class="dispatcher-preview" id="dispatcherPreview" hidden>
+          <div class="preview-header">
+            <span>Vista previa estructurada</span>
+            <span class="ai-badge">IA DEMO</span>
+          </div>
+          <div class="preview-grid" id="previewGrid"></div>
+          <div class="preview-checklist" id="previewChecklist"></div>
+        </div>
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel" type="submit">Cancelar</button>
+          <button class="secondary-button" id="analyzeInstruction" type="button">Analizar instrucción</button>
+          <button class="primary-button" id="createMission" type="button" disabled>Crear misión</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="mission-drawer" id="missionDrawer" aria-hidden="true" aria-label="Detalle de misión">
+      <div class="drawer-header">
+        <span class="drawer-kicker" id="drawerCode">MISIÓN</span>
+        <button class="dialog-close" id="closeDrawer" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <div id="drawerContent"></div>
+    </aside>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
